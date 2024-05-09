@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:schemaLocation="
+		http://www.springframework.org/schema/webflow 
+		https://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <var name="hamUser" class="com.xiaoqingxin.homeam.model.HamUser"/>
+
+	<view-state id="step1" view="flows/login/loginWithUn.html" model="hamUser">
+		<transition on="next" to="step2" /> 
+		<transition on="cancel" to="cancel"/>
+	</view-state>
+
+    <decision-state id="step2">
+	    <if test="loginValidator.findByUsernameAndMessageContext(hamUser.username,messageContext)" 
+	    then="step3" 
+	    else="userError" />
+    </decision-state>
+    
+    <view-state id="userError" view="flows/login/userError.html">
+      <transition on="next" to="step1"/>
+      <transition on="cancel" to="cancel"/>
+    </view-state>
+
+	<view-state id="step3" view="flows/login/loginWithPw.html" model="hamUser">
+		<transition on="previous" to="step1"/>
+		<transition on="next" to="step4"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>
+	
+	<decision-state id="step4">
+	    <if test="loginValidator.passwordValidator(hamUser,flowRequestContext)" 
+	    then="success" 
+	    else="passError" />
+    </decision-state>
+    
+    <view-state id="passError" view="flows/login/passError.html">
+      <transition on="next" to="step1"/>
+      <transition on="cancel" to="cancel"/>
+    </view-state>
+
+	<end-state id="success" view="administration.html"/>
+	<end-state id="cancel" view="index.html"/>
+
+</flow>

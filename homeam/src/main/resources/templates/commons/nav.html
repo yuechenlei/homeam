@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" th:fragment="common_nav">
+<!-- 导航栏 -->
+<nav class="container-xxl bd-gutter flex-wrap flex-lg-nowrap ">
+    <a class="navbar-brand" href="#">家庭资产管理</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"> 
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">侧滑导航</h5>
+        <button type="button" class="btn-close text-reset bg-secondary" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/admin" id="home_a_text">主页</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
+                                                                             aria-expanded="false">购物小票</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/shopping/toShopping">购物管理</a></li>
+                <li><a class="dropdown-item" href="/customerReceipt/toCustomerReceipt">客户小票</a></li>
+                <li><a class="dropdown-item" href="/companyInfo/toCompanyInfo">企业信息</a></li>
+                <li><a class="dropdown-item" href="/mailingAddress/toMailingAddress">通信地址</a></li>
+              </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">工资单</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">收入支出</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav  flex-row flex-wrap ms-md-auto mt-auto mb-auto">
+          <li class="nav-item ">
+            <span class="navbar-text">欢迎您，管理员</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+</header>
+
+</body>
+</html>

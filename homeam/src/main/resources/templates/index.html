@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{commons/header::common_header(title='家庭资产管理')}">
+</head>
+<body>
+
+<style>
+body {
+  background-image: url("/img/AmericanRobin_EN-US0648462541_1920x1080.jpg");
+  background-repeat: no-repeat;
+}
+</style>
+
+<div class="container" >
+
+<div style="margin-top: 200px;"></div>
+<div class="row justify-content-center" >
+<div class="col col-sm-9 offset-sm-1">
+
+<div class="card " style="opacity: 0.7;" >
+
+<div class="card-body">
+<p class="card-title" >欢迎，请登录</p>
+
+  <div style="margin-top: 30px;"></div>
+
+  <div class="d-grid gap-2 col-3 mx-auto">
+    <a class="btn btn-primary" th:href="@{/login}">登 录</a>
+  </div>
+  
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
+<script data-th-replace="commons/scripts :: common_scripts"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.bundle.js}"></script>
+<script type="text/javascript" th:src="@{/jQuery/jquery-3.6.0.js}"></script>
+-->
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head data-th-replace="~{commons/header::common_header(title='添加成功')}"></head>
+<body>
+
+<header data-th-replace="~{commons/nav::common_nav}"></header>
+
+<div class="container" >
+    <div style="margin-top: 200px;"></div>
+    <div class="row justify-content-center" >
+    <div class="col col-sm-9 offset-sm-1">
+
+    <div class="card " style="opacity: 1;" >
+
+    <div class="card-body">
+      <p class="card-title" >添加成功，请选择：</p>
+
+      <div style="margin-top: 30px;"></div>
+  
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <a class="btn btn-primary me-md-5" href="#" onclick="history.back()" >继续新增</a>
+        <a class="btn btn-primary me-md-5" href="/shopping/query">购物查询</a>
+      </div>
+  
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+    <script data-th-replace="commons/scripts :: common_scripts"></script>
+	<script type="text/javascript" th:src="@{/js/shopping-add.js}"></script>
+	<script>
+	    $(function(){
+		    $("#home_a_text").removeClass("active");
+		    $("#navbarDropdown").addClass("active");
+	});
+	</script>
+
+</body>
+</html>

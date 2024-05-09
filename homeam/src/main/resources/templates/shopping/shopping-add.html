@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head data-th-replace="~{commons/header::common_header(title='购物条目新增')}"></head>
+    <body>
+
+        <header data-th-replace="~{commons/nav::common_nav}"></header>
+
+        <div class="container ">
+
+            <h6 class="text-info mt-3">购物条目新增</h6>
+
+            <form class="row g-3 bg-light mt-2 mb-3 needs-validation " novalidate autocomplete="on" target="_self" 
+                  action="/shopping/receiptAdd" method="post" id="receiptAddForm">
+
+                <div class="form-floating col-md-12">
+                    <input type="text" class="form-control" id="market_name" name="marketName" list="marketNameList" placeholder="p" aria-describedby="market_name" required>
+                    <label for="market_name" >*商店名称</label>
+                    <div class="invalid-feedback">在哪个商店买的？</div>
+                    <datalist id="marketNameList" class="datalist">
+                        <option value="Aldi">
+                        <option value="Edeka">
+                        <option value="Lidl">
+                        <option value="Rewe">
+                        <option value="Rossman">
+                        <option value="DM">
+                        <option value="Anh Linh Asiamarkt">
+                        <option value="NP">
+                    </datalist>
+                </div>
+
+                <div class="form-floating  col-md-4">
+                    <input type="text" class="form-control" id="realName" name="realName" placeholder="p" title="日常称呼"/>
+                    <label for="realName" >真名</label> 
+                    <div class="invalid-feedback">生活中称呼的名字!</div>
+                </div>
+                <div class="form-floating col-md-4">
+                    <input type="text" class="form-control" id="packName" name="packName" placeholder="p" title="包装袋上的名字" />
+                    <label for="packName" >包装名字</label>
+                    <div class="invalid-feedback">包装袋上的名字!</div>
+                </div>
+                <div class="form-floating col-md-4">
+                    <input type="text" class="form-control" id="productName" name="productName" placeholder="p" aria-describedby="product_name" required
+                        title="小票上的名字">
+                    <label for="productName" >*产品名字</label>
+                    <div class="invalid-feedback">小票上打印的名字.</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="unitPrice" name="unitPrice" value="" 
+                               placeholder="p" step="0.01"  min="0.00" >
+                        <label for="unitPrice" >单价</label>
+                        <div class="invalid-feedback">Please provide a valid unitPrice.</div>
+                    </div>  
+                </div>
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="unitOfPrice" name="unitOfPrice" value="" 
+                               placeholder="p" list="unitOfPriceList" >
+                        <label for="unitOfPrice" >单价单位</label>
+                        <div class="invalid-feedback">Please provide a valid unitOfPrice.</div>
+                        <datalist id="unitOfPriceList" class="datalist">
+                          <option value="Euro/kg">
+                          <option value="Euro/g">
+                          <option value="Euro/L">
+                          <option value="Euro/ml">
+                        </datalist>  
+                    </div>    
+                </div>
+
+
+                <div class="form-floating col-md-2">
+                    <input type="number" class="form-control" id="totalPrice" name="totalPrice" value="" 
+                           placeholder="p" step="0.01"  min="0.00" required>
+                    <label for="totalPrice" >*总价</label>
+                    <div class="invalid-feedback">Please provide a valid totalPrice.</div>
+                </div>
+                <div class="form-floating col-md-2">
+                    <input type="text" class="form-control" id="unit" name="unit" placeholder="p" list="unitList" value="€" required>
+                    <label for="unit" >*总价单位</label>
+                    <div class="invalid-feedback">Please provide a valid unit.</div>
+                    <datalist id="unitList" class="datalist">
+                          <option value="€">
+                          <option value="￥">
+                          <option value="$">
+                          <option value="￡">
+                    </datalist> 
+                </div>
+                
+                <div class="form-floating col-md-2">
+                    <input type="number" class="form-control" id="weight" name="weight" value="" 
+                           placeholder="p" step="0.001"  min="0.000" >
+                    <label for="weight" >重量</label> 
+                    <div class="invalid-feedback">Please provide a valid weight.</div>
+                </div>
+                <div class="form-floating col-md-2">
+                    <input type="text" class="form-control" id="unitOfWeight" name="unitOfWeight" list="unitOfWeightList" placeholder="p" >
+                    <label for="unitOfWeight" >重量单位</label>
+                    <div class="invalid-feedback">Please provide a valid unitOfWeight.</div>
+                    <datalist id="unitOfWeightList" class="datalist">
+                          <option value="kg">
+                          <option value="g">
+                    </datalist> 
+                </div>
+                
+                <div class="form-floating col-md-4">
+                    <input type="number" class="form-control" id="quantity" name="quantity" value="1" 
+                           placeholder="p" step="1"  min="0" >
+                    <label for="quantity" >数量</label> 
+                    <div class="invalid-feedback">Please provide a valid quantity.</div>
+                </div>
+                
+                <div class="form-floating col-md-4">
+                    <input type="number" class="form-control" id="vat" name="vat" value="0.19"  list="vatList"
+                                         placeholder="p" step="0.01"  min="0.00" required>
+                    <label for="vat" >*增值税</label>
+                    <div class="invalid-feedback">Please provide a valid VAT.</div>
+                    <datalist id="vatList" class="datalist">
+                          <option value="0.19">
+                          <option value="0.07">
+                    </datalist> 
+                </div>
+
+                <div class="form-floating col-md-2">
+                    <select class="form-select " aria-label="category select" id="category" name="category" required>
+                        <option value="Food" selected>食物</option>
+                        <option value="Clothing">衣服</option>
+                        <option value="Cooking">炊事用品</option>
+                        <option value="Household">家居用品</option>
+                        <option value="Transportation">交通工具</option>
+                        <option value="Electronics">电子产品</option>
+                        <option value="Pack">包装</option>
+                        <option value="Tool">工具</option>
+                        <option value="Book">书籍</option>
+                        <option value="Garden">花园</option>
+                        <option value="BabyAndChild">小孩用品</option>
+                        <option value="Care">护理</option>
+                    </select>
+                    <label for="category" >*类别</label>
+                    <div class="invalid-feedback">Please provide a valid category.</div>
+                </div>
+                <div class="form-floating col-md-2" id="subCategoryDiv">
+                    <select class="form-select " aria-label="subCategory select" id="FoodSubCategory" name="subCategory" required>
+                        <option value="BasicFood" selected>基本食物</option>
+                        <option value="Fruit">水果</option>
+                        <option value="Vegetable">蔬菜</option>
+                        <option value="Snack">零食</option>
+                        <option value="FrozenFood">冷冻食品</option>
+                        <option value="Drink">饮料</option>
+                        <option value="Dairy">奶制品</option>
+                        <option value="Sausage">烤肠</option>
+                        <option value="Flesh">肉</option>
+                        <option value="Fish">鱼</option>
+                        <option value="Seafood">海鲜</option>
+                        <option value="Egg">蛋</option>
+                        <option value="Preserve">罐头</option>
+                        <option value="Delicatessen">熟食</option>
+                        <option value="Nut">坚果</option>
+                        <option value="Alcohol">酒</option>
+                        <option value="SugarProduct">糖制品</option>
+                    </select>
+                    <label for="FoodSubCategory" id="subCategoryLabel">*子类别</label>
+                    <div class="invalid-feedback">Please provide a valid subCategory.</div>
+                </div>
+
+                <div class="form-floating col-md-4">
+                    <input type="number" class="form-control" id="coupon" name="coupon" value="1" 
+                           placeholder="p" step="0.01"  min="0.00" max="1" required>
+                    <label for="coupon" >优惠劵</label> 
+                    <div class="invalid-feedback">Please provide a valid coupon.</div>
+                </div>
+                <div class="form-floating col-md-4">
+                    <input type="number" class="form-control" id="discount" name="discount" value="1" 
+                           placeholder="p" step="0.01"  min="0.00" max="1" required>
+                    <label for="discount" >折扣</label> 
+                    <div class="invalid-feedback">Please provide a valid discount.</div>
+                </div>
+
+                <div class="form-floating col-md-4">
+                    <input type="number" class="form-control" id="payBack" name="payBack" value="1" 
+                           placeholder="p" step="0.01"  min="0.00" max="1" required>
+                    <label for="payBack" >会员卡</label> 
+                    <div class="invalid-feedback">Please provide a valid payBack.</div>
+                </div>
+
+                
+                <div class="form-floating col-md-4">
+                    <input type="datetime-local" class="form-control" id="transactionDate" name="transactionDate" 
+                           value="" placeholder="p" step="1" required>
+                    <label for="transactionDate" >*交易日期</label>
+                    <div class="invalid-feedback">Please provide a valid transactionDate.</div>
+                </div>
+                <div class="form-floating col-md-4">
+                    <input type="text" class="form-control" id="customerReceiptId" name="customerReceiptId" 
+                           value="" placeholder="p" step="1" required>
+                    <label for="customerReceiptId" >*客户小票ID</label>
+                    <div class="invalid-feedback">Please provide a valid customerReceiptId.</div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button class="btn btn-primary col-md-3" type="reset" id="receipt_reset" onclick="receiptReset(event)" >清 理</button>
+                    <button class="btn btn-primary col-md-3" type="submit" id="receiptSubmit">提 交</button>
+                </div>
+            </form>
+        </div>
+
+        <div data-th-include="~{shopping/subCategory :: subCategoryFragment}" style="display:none;"></div>
+
+
+        <script data-th-replace="commons/scripts :: common_scripts"></script>
+        <script type="text/javascript" th:src="@{/js/shopping-add.js}"></script>
+        <script>
+            $(function () {
+                $("#home_a_text").removeClass("active");
+                $("#navbarDropdown").addClass("active");
+            });
+        </script>
+    </body>
+</html>

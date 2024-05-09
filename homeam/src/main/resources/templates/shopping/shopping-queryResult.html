@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{commons/header::common_header(title='购物查询结果')}"></head>
+<body>
+	<div class="container-fluid">
+	 
+	  <div data-th-replace="~{commons/modal::common_modal}"></div>
+
+      <div class="table-responsive mt-3">
+		<table class="table table-success table-hover caption-top table-bordered" style="width: 180%;" id="shopping_result_table">
+		    <caption>购物查询结果 &nbsp;&nbsp; 
+		        <input type="radio" id="show_total" name="show_type" value="false" checked>
+                <label for="show_total">全部</label> &nbsp;|&nbsp;
+                <input type="radio" id="show_main" name="show_type" value="true"  onclick="showMain()">
+                <label for="show_main">主要</label>
+		    </caption>
+			<thead>
+				<tr class="table-warning text-center">
+				    <th scope="col" style="width: 2%;">#</th>
+					<th scope="col" style="width: 4%;">真名</th>
+					<th scope="col" style="width: 5%;">包装名字</th>
+					<th scope="col" style="width: 5%;">产品名字</th>
+					<th scope="col" style="width: 3%;">单价</th>
+					<th scope="col" style="width: 3%; display: none;" id="thead_unitOfPrice">单价单位</th>
+					<th scope="col" style="width: 3%;">总价</th>
+					<th scope="col" style="width: 3%; display: none;" id="thead_unit">总价单位</th>
+					<th scope="col" style="width: 3%;">重量</th>
+					<th scope="col" style="width: 3%; display: none;" id="thead_unitOfWeight">重量单位</th>
+					<th scope="col" style="width: 2%;">数量</th>
+					<th scope="col" style="width: 3%;">增值税</th>
+					<th scope="col" style="width: 4%;">类别</th>
+					<th scope="col" style="width: 4%;">子类别</th>
+					<th scope="col" style="width: 3%;">优惠劵</th>
+					<th scope="col" style="width: 3%;">打折</th>
+					<th scope="col" style="width: 3%;">会员卡</th>
+					<th scope="col" style="width: 4%;">商店</th>
+					<th scope="col" style="width: 4%;">客户单据</th>
+					<th scope="col" style="width: 5%;">交易日期</th>
+					<th scope="col" style="width: 5%;">创建日期</th>
+					<th scope="col" style="width: 5%;">修改日期</th>
+					<th scope="col" style="width: 4%;">操作</th>
+				</tr>
+			</thead>
+			<tbody id="tbody_receipt">
+				<tr th:each="receipt : ${paged.page}" th:id="${'tr'+receipt.id}">
+				
+					<th scope="row" th:text="${receiptStat.index+1}">2</th>
+					<td th:id="${'realName'+receipt.id}" th:text="${receipt.realName}"></td>
+					<td th:id="${'packName'+receipt.id}" th:text="${receipt.packName}"></td>
+					<td th:id="${'productName'+receipt.id}" th:text="${receipt.productName}"></td>
+					<td th:id="${'unitPrice'+receipt.id}" th:text="${receipt.unitPrice==null}?'':${receipt.unitPrice}+${receipt.unitOfPrice}" 
+                                       th:data-text="${receipt.unitPrice==null}?'':${receipt.unitPrice}"></td>
+					<td th:id="${'unitOfPrice'+receipt.id}" th:text="${receipt.unitOfPrice==null}?'':${receipt.unitOfPrice}" style="display: none;"></td>
+					<td th:id="${'totalPrice'+receipt.id}" th:text="${receipt.totalPrice}+${receipt.unit}" th:data-text="${receipt.totalPrice}"></td>
+					<td th:id="${'unit'+receipt.id}" th:text="${receipt.unit}" style="display: none;"></td>
+					<td th:id="${'weight'+receipt.id}" th:text="${receipt.weight==null}?'':${receipt.weight}+${receipt.unitOfWeight}" 
+					                   th:data-text="${receipt.weight==null}?'':${receipt.weight}"></td>
+					<td th:id="${'unitOfWeight'+receipt.id}" th:text="${receipt.unitOfWeight==null}?'':${receipt.unitOfWeight}" style="display: none;"></td>
+					<td th:id="${'quantity'+receipt.id}" th:text="${receipt.quantity}"></td>
+					<td th:id="${'vat'+receipt.id}" th:text="${receipt.vat}"></td>
+					<td th:id="${'category'+receipt.id}" th:text="${receipt.category}"></td>
+					<td th:id="${'subCategory'+receipt.id}" th:text="${receipt.subCategory}"></td>
+					<td th:id="${'coupon'+receipt.id}" th:text="${receipt.coupon}"></td>
+					<td th:id="${'discount'+receipt.id}" th:text="${receipt.discount}"></td>
+					<td th:id="${'payBack'+receipt.id}" th:text="${receipt.payBack}"></td>
+					<td th:id="${'marketName'+receipt.id}" th:text="${receipt.marketName}"></td>
+					<td th:id="${'customerReceiptId'+receipt.id}" th:data-id="${receipt.customerReceiptId == null}?'0':${receipt.customerReceiptId}" class="text-center"
+					    th:utext="${receipt.customerReceiptId != null} ? |<a href='/customerReceipt/query/${receipt.customerReceiptId}' target='_blank'>点击查看</a>| :''"></td>
+					<td th:id="${'transactionDate'+receipt.id}" th:text="${#dates.format(receipt.transactionDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td th:id="${'creatDate'+receipt.id}" th:text="${#dates.format(receipt.creatDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td th:id="${'lastModifyDate'+receipt.id}" th:text="${#dates.format(receipt.lastModifyDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					
+					<td class="text-center">
+					    <a th:id="${'receiptModify'+receipt.id}" href="#" th:data-id="${receipt.id}"
+					       onclick="receiptModify(this.getAttribute('data-id'),event)">修改</a>
+					    <a th:id="${'receiptModifyCancel'+receipt.id}" href="#" th:data-id="${receipt.id}" 
+					       onclick="receiptModifyCancel(this.getAttribute('data-id'),event)" style="display:none;" class="text-danger" >取消</a> |
+					    <a th:id="${'receiptDeleteOne'+receipt.id}" href="#" th:data-id="${receipt.id}"
+					       onclick="receiptDeleteOne(this.getAttribute('data-id'),event)">删除</a>
+					    <a th:id="${'receiptModifyConfirm'+receipt.id}" href="#" th:data-id="${receipt.id}"
+					       onclick="receiptModifyConfirm(this.getAttribute('data-id'),event)" style="display:none;" class="text-danger" >确定</a>
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+    </div>
+    
+    <!-- 分页 -->
+    <div data-th-replace="~{commons/pagination::common_page}"></div>
+    
+</div>
+	
+	<script data-th-replace="commons/scripts :: common_scripts"></script>
+	<script type="text/javascript" th:src="@{/js/shopping-query-result.js}"></script>
+	
+	<div id="categorySelectDiv" style="display:none;">
+	    <select id="categoryModel" name="category" style="width:100%" required>
+            <option value="Food">食物</option>
+            <option value="Clothing">衣服</option>
+            <option value="Cooking">炊事用品</option>
+            <option value="Household">家居用品</option>
+            <option value="Transportation">交通工具</option>
+            <option value="Electronics">电子产品</option>
+            <option value="Pack">包装</option>
+            <option value="Tool">工具</option>
+            <option value="Book">书籍</option>
+            <option value="Garden">花园</option>
+            <option value="BabyAndChild">小孩用品</option>
+            <option value="Care">护理</option>
+        </select>
+    </div>
+    <div th:include="~{shopping/subCategory :: subCategoryFragment}" style="display:none;"></div>
+    
+    <div style="display:none;" >
+        <form action="/shopping/receiptQuery" method="post" name="receiptQueryBean" id="receiptQueryForm">
+          <input type="text" id="category" name="category" th:value="${receiptQueryBean.category}">
+          <input type="text" id="subCategory" name="subCategory" th:value="${receiptQueryBean.subCategory}">
+          <input type="text" id="productName" name="name" th:value="${receiptQueryBean.name}" >
+		  <input type="number" id="totalPriceX" name="totalPriceX" th:value="${receiptQueryBean.totalPriceX}" step="0.01"  min="0.00" >
+		  <input type="number" id="totalPriceD" name="totalPriceD" th:value="${receiptQueryBean.totalPriceD}" step="0.01"  min="0.00" >
+		  <input type="text" id="market_name" name="marketName" th:value="${receiptQueryBean.marketName}">
+		  <input type="text" id="transactionDateStart" name="transactionDateStart" th:value="${#dates.format(receiptQueryBean.transactionDateStart, 'yyyy-MM-dd HH:mm:ss')}" >
+		  <input type="text" id="transactionDateEnd" name="transactionDateEnd" th:value="${#dates.format(receiptQueryBean.transactionDateEnd, 'yyyy-MM-dd HH:mm:ss')}" >
+          <input type="text" id="page" name="page" value="">
+          <input type="text" id="showMain" name="showMain" value="false">
+       </form>
+    </div>
+    
+</body>
+</html>

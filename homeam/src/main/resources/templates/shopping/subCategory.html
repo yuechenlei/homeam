@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>subCategory</title>
+</head>
+<body>
+  <div th:fragment="subCategoryFragment">
+	<select class="form-select " aria-label="subCategory select" id="FoodSubCategory" name="subCategory" style="width:100%" required>
+		<option value="BasicFood">基本食物</option>
+		<option value="Fruit">水果</option>
+		<option value="Vegetable">蔬菜</option>
+		<option value="Snack">零食</option>
+		<option value="FrozenFood">冷冻食品</option>
+		<option value="Drink">饮料</option>
+		<option value="Dairy">奶制品</option>
+		<option value="Sausage">烤肠</option>
+		<option value="Flesh">肉</option>
+		<option value="Fish">鱼</option>
+		<option value="Seafood">海鲜</option>
+		<option value="Egg">蛋</option>
+		<option value="Preserve">罐头</option>
+		<option value="Delicatessen">熟食</option>
+		<option value="Nut">坚果</option>
+		<option value="Alcohol">酒</option>
+		<option value="SugarProduct">糖制品</option>
+	</select>
+	
+	
+	<select class="form-select " aria-label="subCategory select" id="ClothingSubCategory" name="subCategory" style="width:100%" required>
+		<option value="BabyClothing">婴儿衣服</option>
+		<option value="ChildClothing">小孩衣服</option>
+		<option value="YouthClothing">青少年衣服</option>
+		<option value="WomanClothing">女士衣服</option>
+		<option value="ManClothing">男士衣服</option>
+		<option value="SeniorClothing">老人衣服</option>
+		<option value="Textile">纺织品</option>
+	</select>
+	
+	<select class="form-select " aria-label="subCategory select" id="CookingSubCategory" name="subCategory" style="width:100%" required>
+		<option value="Tableware">餐具</option>
+		<option value="Spice">调料</option>
+		<option value="Oil">食用油</option>
+		<option value="Flour">面粉</option>
+		<option value="Grain">庄稼种子</option>
+		<option value="KitchenUtensil">厨房设备</option>
+	</select>
+	
+	<select class="form-select " aria-label="subCategory select" id="HouseholdSubCategory" name="subCategory" style="width:100%" required>
+		<option value="Furniture">家具</option>
+		<option value="Decoration">装饰用品</option>
+		<option value="Bedding">床上用品</option>
+		<option value="Toiletry">洗漱用品</option>
+		<option value="Cosmetic">化妆用品</option>
+		<option value="Cleaning">清洁用品</option>
+		<option value="Houseware">家用</option>
+	</select>
+	
+	<select class="form-select " aria-label="subCategory select" id="TransportationSubCategory" name="subCategory" style="width:100%" required>
+		<option value="MotorVehicle">机动车</option>
+		<option value="Bicycle">自行车</option>
+		<option value="ChildrenVehicle">小孩车</option>
+		<option value="Stroller">婴儿车</option>
+		<option value="Energy">能源</option>
+	</select>
+	
+	<select class="form-select " aria-label="subCategory select" id="ElectronicsSubCategory" name="subCategory" style="width:100%" required>
+		<option value="DomesticAppliance">家电</option>
+		<option value="Lamp">灯具</option>
+		<option value="Computer">电脑</option>
+		<option value="Telephone">电话</option>
+		<option value="PrinterAndScanner">打印机</option>
+		<option value="E_Book">电子书</option>
+		<option value="Film">电影</option>
+		<option value="Music">音乐</option>
+		<option value="Game">游戏</option>
+		<option value="Software">软件</option>
+	</select>
+	
+	<select class="form-select " aria-label="subCategory select" id="PackSubCategory" name="subCategory" style="width:100%" required>
+		<option value="FoodPackaging">食品包装</option>
+		<option value="ShoppingBasket">购物篮</option>
+		<option value="TrashBag">垃圾袋</option>
+		<option value="Suitcase">箱子</option>
+		<option value="Box">盒子</option>
+		<option value="Bottle">瓶子</option>
+		<option value="Jar">罐子</option>
+		<option value="Bag">袋子</option>
+		<option value="Wallet">钱包</option>
+	</select>
+	
+	<select class="form-select " aria-label="subCategory select" id="ToolSubCategory" name="subCategory" style="width:100%" required>
+		<option value="PowerTool">电动工具</option>
+		<option value="HandTool">手动工具</option>
+	</select>
+
+    <select class="form-select " aria-label="subCategory select" id="BookSubCategory" name="subCategory" style="width:100%" required>
+		<option value="Divine">神传</option>
+		<option value="Theology">神学</option>
+		<option value="ComputerScience">计算机</option>
+		<option value="Nursing">护理</option>
+		<option value="Medicine">西医</option>
+		<option value="ChineseMedicine">中医</option>
+		<option value="Language">语言</option>
+		<option value="Philosophy">哲学</option>
+		<option value="Literature">文学</option>
+		<option value="Mathematics">数学</option>
+		<option value="Business">商业</option>
+		<option value="History">历史</option>
+		<option value="Art">艺术</option>
+		<option value="Music">音乐</option>
+		<option value="PhysicsAndAstronomy">物理和天文</option>
+		<option value="Law">法律</option>
+	</select>
+	
+	<select class="form-select " aria-label="subCategory select" id="GardenSubCategory" name="subCategory" style="width:100%" required>
+		<option value="VegetableSeed">菜种子</option>
+		<option value="FlowerSeed">花种子</option>
+		<option value="GrassSeed">草种子</option>
+		<option value="GardenTool">花园工具</option>
+		<option value="GardenFurniture">花园家具</option>
+		<option value="Grills">烧烤</option>
+		<option value="TransportHelp">运输工具</option>
+		<option value="GardenMachine">花园机器</option>
+		<option value="PlantAccessory">植物打理工具</option>
+	</select>
+	
+	<select class="form-select " aria-label="subCategory select" id="BabyAndChildSubCategory" name="subCategory" style="width:100%" required>
+		<option value="ChildrenSeat">小孩座椅</option>
+		<option value="ChildrenReside">小孩家居</option>
+		<option value="Toy">玩具</option>
+		<option value="OnTheWay">途中</option>
+	</select>
+	
+	<select class="form-select " aria-label="subCategory select" id="CareSubCategory" name="subCategory" style="width:100%" required>
+		<option value="Medicament">药物</option>
+		<option value="WoundCare">伤口护理</option>
+		<option value="SelfTest">自我测试</option>
+		<option value="Vitamin">维生素</option>
+	</select>
+  </div>
+</body>
+</html>

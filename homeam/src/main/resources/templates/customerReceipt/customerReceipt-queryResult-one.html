@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head data-th-include="~{commons/header::common_header(title='客户小票查询结果')}"></head>
+<body>
+	<div class="container-fluid">
+	 
+	    <!-- Button trigger modal -->
+        <button id="showModelButton" type="button" class="btn btn-primary" data-bs-toggle="modal" 
+                data-bs-target="#crModal" style="display:none;"></button>
+	    
+	    <!-- Modal -->
+        <div class="modal fade" id="crModal" tabindex="-1" aria-labelledby="crModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="crModalLabel">删除确认</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" id="crModalBody">确定删除吗？</div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button id="crModelConfirm" type="button" class="btn btn-primary" data-bs-dismiss="modal">确定</button>
+              </div>
+           </div>
+         </div>
+        </div>
+
+      <div class="table-responsive">
+		<table class="table table-success table-hover caption-top table-bordered" style="width: 130%;" id="cr_result_table">
+		    <caption>Kundenbeleg查询结果 byid</caption>
+			<thead>
+				<tr class="table-warning text-center">
+				     <th scope="col" style="width: 2%;">#</th>
+				    <th scope="col" style="width: 3%;">Id</th>
+					<th scope="col" style="width: 3%;">TerminalId</th>
+					<th scope="col" style="width: 3%;">交易码</th>
+					<th scope="col" style="width: 3%;">BelegN.</th>
+					<th scope="col" style="width: 4%;">增值税号码</th>
+					<th scope="col" style="width: 3%;">支付方式</th>
+					<th scope="col" style="width: 3%;">交易金额</th>
+					<th scope="col" style="width: 2%; display: none;" id="thead_unit">单位</th>
+					<th scope="col" style="width: 3%;">商店</th>
+					<th scope="col" style="width: 5%;">交易日期</th>
+					<th scope="col" style="width: 5%;">创建日期</th>
+					<th scope="col" style="width: 5%;">修改日期</th>
+					<th scope="col" style="width: 3%;">操作</th>
+				</tr>
+			</thead>
+			<tbody th:if="${cr!=null}">
+				<tr th:id="${'tr'+cr.id}" th:object="${cr.paymentMethod}">
+					<th scope="row">1</th>
+					<td th:id="${'id'+cr.id}" th:text="${cr.id}"></td>
+					<td th:id="${'terminalId'+cr.id}" th:text="${cr.terminalId}"></td>
+					<td th:id="${'transactionNumber'+cr.id}" th:text="${cr.transactionNumber}"></td>
+					<td th:id="${'receiptNumber'+cr.id}" th:text="${cr.receiptNumber}"></td>
+					<td th:id="${'taxNumber'+cr.id}" th:text="${cr.taxNumber}"></td>
+					<td th:id="${'paymentMethod'+cr.id}" th:text="${cr.paymentMethod}"></td>
+					<td th:id="${'amount'+cr.id}" th:data-text="${cr.amount}" th:text="${cr.amount}+${cr.unit}"></td>
+					<td th:id="${'unit'+cr.id}" th:text="${cr.unit}" style="display: none;"></td>
+					<td th:id="${'companyId'+cr.id}" th:data-id="${cr.companyId == null}?'0':${cr.companyId}" class="text-center"
+					    th:utext="${cr.companyId != null} ? |<a href='/companyInfo/query/${cr.companyId}' target='_blank'>点击查看</a>| :''"></td>
+					<td th:id="${'transactionDate'+cr.id}" th:text="${#dates.format(cr.transactionDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td th:id="${'creatDate'+cr.id}" th:text="${#dates.format(cr.creatDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td th:id="${'lastModifyDate'+cr.id}" th:text="${#dates.format(cr.lastModifyDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td class="text-center">
+					    <a th:id="${'crModify'+cr.id}" href="#" th:data-id="${cr.id}"
+					       onclick="crModify(this.getAttribute('data-id'),event)">修改</a>
+					    <a th:id="${'crModifyCancel'+cr.id}" href="#" th:data-id="${cr.id}" 
+					       onclick="crModifyCancel(this.getAttribute('data-id'),event)" style="display:none;" class="text-danger" >取消</a> |
+					    <a th:id="${'crDeleteOne'+cr.id}" href="#" th:data-id="${cr.id}"
+					          onclick="crDeleteOne(this.getAttribute('data-id'),event)">删除</a>
+					    <a th:id="${'crModifyConfirm'+cr.id}" href="#" th:data-id="${cr.id}"
+					       onclick="crModifyConfirm(this.getAttribute('data-id'),event)" style="display:none;" class="text-danger" >确定</a>
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+    </div>
+    
+    
+</div>
+	
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.js"></script>
+	<script type="text/javascript" src="/jQuery/jquery-3.6.0.js"></script>
+	<script type="text/javascript" src="/js/cr-query-result-one.js"></script>
+	
+    
+</body>
+</html>

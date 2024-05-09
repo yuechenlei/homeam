@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+    <!-- 分页 -->
+    <div class="mt-3" th:fragment="common_page">
+    <nav aria-label="Page navigation ">
+      <ul class="pagination justify-content-center" th:if="${paged.page.totalPages > 0}" id="page_ul">
+        <li class="page-item " th:classappend="${paged.paging.isPrevEnabled()?'':'disabled'}">
+          <a class="page-link" href="#" aria-label="Previous" th:data-pageNumber="${paged.paging.pageNumber - 1}" 
+                                        th:onclick="changePage(this.getAttribute('data-pageNumber'),event)" >
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        
+        <th:block  th:each="item : ${paged.paging.getItems()}">
+          <li class="page-item" th:classappend="${item.index == paged.paging.pageNumber? 'active' : ''}"
+                                th:if="${item.pageItemType.name() == 'PAGE'}">
+            <a class="page-link" href="#" th:text="${item.index}" th:data-page="${item.index}"
+                                          th:onclick="changePage(this.getAttribute('data-page'),event)">1</a>
+          </li>
+          
+          <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+            <a class="page-link" href="#">...</a>
+          </li>
+        </th:block>
+        
+        <li class="page-item " th:classappend="${paged.paging.isNextEnabled()? '': 'disabled'}">
+          <a class="page-link" href="#" aria-label="Next" th:data-pageNumber="${paged.paging.pageNumber + 1}"
+                                        th:onclick="changePage(this.getAttribute('data-pageNumber'),event)">
+          <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head data-th-replace="~{commons/header::common_header(title='购物管理')}"></head>
+<body>
+
+<header data-th-replace="~{commons/nav::common_nav}"></header>
+
+<div class="container" >
+    <div style="margin-top: 200px;"></div>
+    <div class="row justify-content-center" >
+    <div class="col col-sm-9 offset-sm-1">
+
+    <div class="card " style="opacity: 1;" >
+
+    <div class="card-body">
+      <p class="card-title" >欢迎进入<span class="text-info">购物</span>管理页面,请选择您要做的事</p>
+
+      <div style="margin-top: 30px;"></div>
+  
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <a class="btn btn-primary me-md-5" href="/shopping/add">条目新增</a>
+        <a class="btn btn-primary" href="/shopping/query">购物查询</a>
+      </div>
+  
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script data-th-replace="commons/scripts :: common_scripts"></script>
+<script>
+	$(function(){
+		$("#home_a_text").removeClass("active");
+		$("#navbarDropdown").addClass("active");
+	});
+</script>
+</body>
+</html>

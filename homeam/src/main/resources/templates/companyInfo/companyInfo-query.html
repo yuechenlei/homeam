@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head data-th-replace="~{commons/header::common_header(title='商店查询')}"></head>
+<body>
+
+<header data-th-replace="~{commons/nav::common_nav}"></header>
+
+<div class="container" >
+
+    <h6 class="text-info mt-3">企业信息查询</h6>
+
+    <form class="row g-3 bg-light mt-3 " novalidate autocomplete="on" target="_blank" 
+          action="/companyInfo/query" method="post" >
+			
+			<div class="form-floating col-md-12">
+		      <input type="text" class="form-control" id="market_name" name="name" 
+		             placeholder="p" aria-describedby="market_name" >
+		      <label for="market_name" >商店名称</label>
+            </div>
+			
+			
+			<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+			    <button class="btn btn-primary col-md-3" type="reset" >清 空</button>
+				<button class="btn btn-primary col-md-3" type="submit">查 询</button>
+			</div>
+		</form>
+    
+</div>
+
+<script data-th-replace="commons/scripts :: common_scripts"></script>
+<script>
+	$(function(){
+		$("#home_a_text").removeClass("active");
+		$("#navbarDropdown").addClass("active");
+	});
+</script>
+
+</body>
+</html>

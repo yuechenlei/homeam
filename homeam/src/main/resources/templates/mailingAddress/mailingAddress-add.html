@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head data-th-replace="~{commons/header::common_header(title='通信地址条目新增')}"></head>
+<body>
+
+<header data-th-replace="~{commons/nav::common_nav}"></header>
+
+	<div class="container ">
+	
+	  <h6 class="text-info mt-3">通信地址条目新增</h6>
+	
+		<form class="row g-3 bg-light mt-3 mb-3 needs-validation " novalidate autocomplete="on" target="_self" 
+		      action="/mailingAddress/add" method="post" name="mailingAddress" id="mailingAddressAddForm">
+		  
+		    <div class="form-floating col-md-6">
+		      <input type="text" class="form-control" id="vorName" name="vorName" placeholder="p" >
+              <label for="vorName" >VorName</label> 
+			  <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-floating col-md-6">
+				<input type="text" class="form-control" id="nachName" name="nachName" placeholder="p" >
+				<label for="nachName" >NachName</label>
+				<div class="invalid-feedback"></div>
+			</div>
+            
+			<div class="form-floating  col-md-4">
+				<input type="text" class="form-control" id="streetName" name="streetName" value="" placeholder="p" required/>
+				<label for="streetName" >*StreetName</label> 
+				<div class="invalid-feedback"></div>
+			</div>
+			<div class="form-floating col-md-2">
+				<input type="text" class="form-control" id="streetNumber" name="streetNumber" placeholder="p" required>
+				<label for="streetNumber" >*StreetNumber</label>
+				<div class="invalid-feedback"></div>
+			</div>
+			<div class="form-floating col-md-2">
+				<input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="p" required/>
+				<label for="postalCode" >*PostalCode</label>
+				<div class="invalid-feedback"></div>
+			</div>
+			<div class="form-floating col-md-4">
+				<input type="text" class="form-control" id="city" name="city" value="Braunschweig" placeholder="p" required>
+				<label for="city" >*City</label> 
+				<div class="invalid-feedback"></div>
+			</div>
+			
+			
+			
+			<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+			    <button class="btn btn-primary col-md-3" type="reset" id="mailing_address_reset" onclick="mailingAddressReset()" >清 空</button>
+				<button class="btn btn-primary col-md-3" type="submit" id="mailingAddressSubmit">提 交</button>
+			</div>
+		</form>
+	</div>
+
+
+
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.js"></script>
+	<script type="text/javascript" src="/jQuery/jquery-3.6.0.js"></script>
+	<script type="text/javascript" src="/js/mailingAddress-add.js"></script>
+	<script>
+	$(function(){
+		$("#home_a_text").removeClass("active");
+		$("#navbarDropdown").addClass("active");
+	});
+</script>
+</body>
+</html>

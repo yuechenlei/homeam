@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head data-th-replace="~{commons/header::common_header(title='购物查询')}"></head>
+<body>
+
+<header data-th-replace="~{commons/nav::common_nav}"></header>
+
+<div class="container" >
+
+    <h6 class="text-info mt-3">购物查询</h6>
+
+    <form class="row g-3 bg-light mt-3 " novalidate autocomplete="on" target="_blank" 
+          action="/shopping/receiptQuery" method="post" name="receiptQueryBean">
+          
+		    <div class="form-floating col-md-2">
+		      <select class="form-select" aria-label="category select" id="category" name="category" >
+		          <option value="" selected>所有类别</option>
+                  <option value="Food">食物</option>
+                  <option value="Clothing">衣服</option>
+                  <option value="Cooking">炊事用品</option>
+                  <option value="Household">家居用品</option>
+                  <option value="Transportation">交通工具</option>
+                  <option value="Electronics">电子产品</option>
+                  <option value="Pack">包装</option>
+                  <option value="Tool">工具</option>
+                  <option value="Book">书籍</option>
+                  <option value="Garden">花园</option>
+                  <option value="BabyAndChild">小孩用品</option>
+                  <option value="Care">护理</option>
+                </select>
+				<label for="category" >类别</label>
+            </div>
+            <div class="form-floating col-md-2" id="subCategoryDiv">
+              <select class="form-select" id="subCategory" name="subCategory"><option value="" selected></option></select>
+              <label for="subCategory" >子类别</label>
+            </div>
+            
+			<div class="form-floating col-md-4">
+				<input type="text" class="form-control" id="productName" name="name" value="" placeholder="p" required>
+				<label for="productName" >名字</label>
+			</div>
+			
+			<div class="form-floating col-md-2">
+				<input type="number" class="form-control" id="totalPriceD" name="totalPriceD" value="" 
+				       placeholder="p" step="0.01"  min="0.00" required>
+				<label for="totalPriceD" >价格von</label>
+			</div>
+			
+			<div class="form-floating col-md-2">
+				<input type="number" class="form-control" id="totalPriceX" name="totalPriceX" value="" 
+				       placeholder="p" step="0.01"  min="0.00" required>
+				<label for="totalPriceX" >价格bis</label>
+			</div>
+			
+			<div class="form-floating col-md-4">
+		      <input type="text" class="form-control" id="market_name" name="marketName" list="marketNameList" placeholder="p" aria-describedby="market_name">
+                    <label for="market_name" >商店名称</label>
+                    <datalist id="marketNameList" class="datalist">
+                        <option value="Aldi">
+                        <option value="Edeka">
+                        <option value="Lidl">
+                        <option value="Rewe">
+                        <option value="Rossman">
+                        <option value="DM">
+                        <option value="Anh Linh Asiamarkt">
+                        <option value="NP">
+                    </datalist>
+            </div>
+            
+			<div class="form-floating col-md-4">
+				<input type="datetime-local" class="form-control" id="transactionDateStart" name="transactionDateStart" 
+				       value="" placeholder="p" step="1" required>
+				<label for="transactionDateStart" >交易日期von</label>
+			</div>
+			<div class="form-floating col-md-4">
+				<input type="datetime-local" class="form-control" id="transactionDateEnd" name="transactionDateEnd" 
+				       value="" placeholder="p" step="1" required>
+				<label for="transactionDateEnd" >交易日期bis</label>
+			</div>
+			
+			<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+			    <button class="btn btn-primary col-md-3" type="reset" id="receipt_query_reset" onclick="receiptQueryReset()" >清 空</button>
+				<button class="btn btn-primary col-md-3" type="submit">查 询</button>
+			</div>
+		</form>
+    
+    
+    
+    
+</div>
+
+<script data-th-replace="commons/scripts :: common_scripts"></script>
+<script>
+  //类别显示
+  $("#category").change(function(){
+	    var selectedVal = $("#category :selected").val();
+	    switch(selectedVal){
+	    case "Food": $("#subCategoryDiv").html($("#FoodSubCategory").clone()); 
+	                 $("#subCategoryDiv").append('<label for="FoodSubCategory" >子类别</label>');
+	                 break;
+	    case "Clothing": $("#subCategoryDiv").html($("#ClothingSubCategory").clone()); 
+                         $("#subCategoryDiv").append('<label for="ClothingSubCategory" id="subCategoryLabel">子类别</label>');
+                         break;
+	    case "Cooking": $("#subCategoryDiv").html($("#CookingSubCategory").clone()); 
+                        $("#subCategoryDiv").append('<label for="CookingSubCategory" id="subCategoryLabel">子类别</label>');
+                        break;
+	    case "Household": $("#subCategoryDiv").html($("#HouseholdSubCategory").clone()); 
+                          $("#subCategoryDiv").append('<label for="HouseholdSubCategory" id="subCategoryLabel">子类别</label>');
+                          break;
+	    case "Transportation": $("#subCategoryDiv").html($("#TransportationSubCategory").clone()); 
+                               $("#subCategoryDiv").append('<label for="TransportationSubCategory" id="subCategoryLabel">子类别</label>');
+                               break;
+	    case "Electronics": $("#subCategoryDiv").html($("#ElectronicsSubCategory").clone()); 
+                            $("#subCategoryDiv").append('<label for="ElectronicsSubCategory" id="subCategoryLabel">子类别</label>');
+                            break;
+	    case "Pack": $("#subCategoryDiv").html($("#PackSubCategory").clone()); 
+                     $("#subCategoryDiv").append('<label for="PackSubCategory" id="subCategoryLabel">子类别</label>');
+                     break;
+	    case "Tool": $("#subCategoryDiv").html($("#ToolSubCategory").clone()); 
+                     $("#subCategoryDiv").append('<label for="ToolSubCategory" id="subCategoryLabel">子类别</label>');
+                     break;
+	    case "Book": $("#subCategoryDiv").html($("#BookSubCategory").clone()); 
+                     $("#subCategoryDiv").append('<label for="BookSubCategory" id="subCategoryLabel">子类别</label>');
+                     break;
+	    case "Garden": $("#subCategoryDiv").html($("#GardenSubCategory").clone()); 
+                       $("#subCategoryDiv").append('<label for="GardenSubCategory" id="subCategoryLabel">子类别</label>');
+                       break;
+	    case "BabyAndChild": $("#subCategoryDiv").html($("#BabyAndChildSubCategory").clone()); 
+                             $("#subCategoryDiv").append('<label for="BabyAndChildSubCategory" id="subCategoryLabel">子类别</label>');
+                             break;
+	    case "Care": $("#subCategoryDiv").html($("#CareSubCategory").clone()); 
+                     $("#subCategoryDiv").append('<label for="CareSubCategory" id="subCategoryLabel">子类别</label>');
+                     break;
+	    case "": $("#subCategoryDiv").html('<select class="form-select" id="subCategory" name="subCategory"><option value="" selected></option></select>'); 
+                 $("#subCategoryDiv").append('<label for="subCategory" id="subCategoryLabel">子类别</label>');
+                 break;
+	  
+	  }
+  });
+  
+  function receiptQueryReset(){
+		
+		$("#subCategoryDiv").html('<select class="form-select" id="subCategory" name="subCategory"><option value="" selected></option></select>'); 
+        $("#subCategoryDiv").append('<label for="subCategory" id="subCategoryLabel">子类别</label>');
+		
+		return true;
+	}
+	
+	$(function(){
+		$("#home_a_text").removeClass("active");
+		$("#navbarDropdown").addClass("active");
+	});
+
+</script>
+
+<div data-th-include="~{shopping/subCategory :: subCategoryFragment}" style="display:none;"></div>
+</body>
+</html>

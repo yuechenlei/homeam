@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head data-th-replace="~{commons/header::common_header(title='通信地址查询')}"></head>
+<body>
+
+<header data-th-replace="~{commons/nav::common_nav}"></header>
+
+<div class="container" >
+
+  <h6 class="text-info mt-3">通信地址查询</h6>
+
+    <form class="row g-3 bg-light mt-3 " novalidate autocomplete="on" target="_blank" 
+          action="/mailingAddress/query" method="post" name="maQueryBean">
+            
+			<div class="form-floating col-md-6">
+				<input type="text" class="form-control" id="name" name="name" placeholder="p" >
+				<label for="name" >名字</label>
+			</div>
+			<div class="form-floating col-md-6">
+				<input type="text" class="form-control" id="streetName" name="streetName" placeholder="p" >
+				<label for="streetName" >街道名字</label>
+			</div>
+			<div class="form-floating col-md-6">
+				<input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="p" >
+				<label for="postalCode" >邮政编码</label>
+			</div>
+			<div class="form-floating col-md-6">
+				<input type="text" class="form-control" id="city" name="city" placeholder="p" >
+				<label for="city" >Stadt</label>
+			</div>
+			
+			
+			<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+			    <button class="btn btn-primary col-md-3" type="reset" >清 空</button>
+				<button class="btn btn-primary col-md-3" type="submit">查 询</button>
+			</div>
+		</form>
+    
+    
+    
+    
+</div>
+
+<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/jQuery/jquery-3.6.0.js"></script>
+<script>
+	$(function(){
+		$("#home_a_text").removeClass("active");
+		$("#navbarDropdown").addClass("active");
+	});
+	
+</script>
+</body>
+</html>

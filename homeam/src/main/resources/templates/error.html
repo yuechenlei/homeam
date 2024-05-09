@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>错误页面</title>
+</head>
+<body>
+
+<h1>出错了,原因如下：</h1>
+
+<p data-th-text="${'时间timestamp: '+ timestamp}"></p>
+<p data-th-text="${'Http状态码status: '+ status}"></p>
+<p data-th-text="${'请求路径path: '+ path}"></p>
+<p data-th-text="${'错误原因error: '+ error}"></p>
+<p data-th-text="${'异常类名exception: '+ exception}"></p>
+<p data-th-text="${'异常消息message: '+ message}"></p>
+<p data-th-text="${'异常跟踪信息trace: '+ trace}"></p>
+
+</body>
+</html>

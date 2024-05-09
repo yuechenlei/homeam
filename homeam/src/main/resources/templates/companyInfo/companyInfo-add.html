@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head data-th-replace="~{commons/header::common_header(title='企业信息条目新增')}"></head>
+<body>
+
+<header data-th-replace="~{commons/nav::common_nav}"></header>
+
+	<div class="container ">
+	
+	<h6 class="text-info mt-3">企业信息条目新增</h6>
+	
+		<form class="row g-3 bg-light mt-3 mb-3 needs-validation " novalidate autocomplete="on" target="_self" 
+		      action="/companyInfo/add" method="post" name="companyInformation" id="companyInfoAddForm">
+		  
+		    <div class="form-floating col-md-6">
+		      <input type="text" class="form-control" id="market_name" name="name" placeholder="p" aria-describedby="market_name" required>
+              <label for="market_name" >*企业全名</label> 
+			  <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-floating col-md-6">
+				<input type="text" class="form-control" id="openTime" name="openTime" placeholder="p" >
+				<label for="openTime" >营业时间</label>
+				<div class="invalid-feedback"></div>
+			</div>
+            
+			<div class="form-floating col-md-4">
+				<input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber" placeholder="p" >
+				<label for="telephoneNumber" >电话号码</label> 
+				<div class="invalid-feedback"></div>
+			</div>
+			<div class="form-floating col-md-4">
+				<input type="text" class="form-control" id="webSite" name="webSite" placeholder="p" >
+				<label for="webSite" >网址</label>
+				<div class="invalid-feedback"></div>
+			</div>
+			<div class="form-floating col-md-4">
+				<input type="text" class="form-control" id="mailingAddressId" name="mailingAddressId" placeholder="p" >
+				<label for="mailingAddressId" >通讯地址Id</label>
+				<div class="invalid-feedback">mailingAddressId</div>
+			</div>
+			
+			
+			<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+			    <button class="btn btn-primary col-md-3" type="reset" id="company_info_reset" onclick="companyInfoReset()" >清 理</button>
+				<button class="btn btn-primary col-md-3" type="submit" id="companyInfoSubmit">提 交</button>
+			</div>
+		</form>
+	</div>
+
+
+
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.js"></script>
+	<script type="text/javascript" src="/jQuery/jquery-3.6.0.js"></script>
+	<script type="text/javascript" src="/js/companyInfo-add.js"></script>
+	<script>
+	    $(function(){
+		    $("#home_a_text").removeClass("active");
+		    $("#navbarDropdown").addClass("active");
+	});
+	</script>
+</body>
+</html>

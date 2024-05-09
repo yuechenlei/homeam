@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head data-th-include="~{commons/header::common_header(title='通信地址查询结果')}"></head>
+<body>
+	<div class="container-fluid">
+	 
+	    <!-- Button trigger modal -->
+        <button id="showModelButton" type="button" class="btn btn-primary" data-bs-toggle="modal" 
+                data-bs-target="#maModal" style="display:none;"></button>
+	    
+	    <!-- Modal -->
+        <div class="modal fade" id="maModal" tabindex="-1" aria-labelledby="maModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="maModalTitle">删除确认</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" id="maModalBody">确定删除吗？</div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button id="maModalConfirm" type="button" class="btn btn-primary" data-bs-dismiss="modal">确定</button>
+              </div>
+           </div>
+         </div>
+        </div>
+
+      <div class="table-responsive">
+		<table class="table table-success table-hover caption-top table-bordered" style="width: 120%;" id="ma_result_table">
+		    <caption>通信地址查询结果 byid</caption>
+			<thead>
+				<tr class="table-warning text-center">
+				    <th scope="col" style="width: 2%;">#</th>
+				    <th scope="col" style="width: 3%;">Id</th>
+					<th scope="col" style="width: 5%;">VorName</th>
+					<th scope="col" style="width: 5%;">NachName</th>
+					<th scope="col" style="width: 5%;">Straße</th>
+					<th scope="col" style="width: 2%;">Straßenummer</th>
+					<th scope="col" style="width: 3%;">Postleitzahl</th>
+					<th scope="col" style="width: 5%;">Stadt</th>
+					<th scope="col" style="width: 5%;">创建日期</th>
+					<th scope="col" style="width: 5%;">修改日期</th>
+					<th scope="col" style="width: 3%;">操作</th>
+				</tr>
+			</thead>
+			<tbody th:if="${ma}!=null">
+				<tr th:id="${'tr'+ma.id}">
+					<th scope="row">1</th>
+					<td th:id="${'Id'+ma.id}" th:text="${ma.id}"></td>
+					<td th:id="${'vorName'+ma.id}" th:text="${ma.vorName}"></td>
+					<td th:id="${'nachName'+ma.id}" th:text="${ma.nachName}"></td>
+					<td th:id="${'streetName'+ma.id}" th:text="${ma.streetName}"></td>
+					<td th:id="${'streetNumber'+ma.id}" th:text="${ma.streetNumber}"></td>
+					<td th:id="${'postalCode'+ma.id}" th:text="${ma.postalCode}"></td>
+					<td th:id="${'city'+ma.id}" th:text="${ma.city}"></td>
+					<td th:id="${'creatDate'+ma.id}" th:text="${#dates.format(ma.creatDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td th:id="${'lastModifyDate'+ma.id}" th:text="${#dates.format(ma.lastModifyDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td class="text-center">
+					    <a th:id="${'maModify'+ma.id}" href="#" th:data-id="${ma.id}"
+					       onclick="maModify(this.getAttribute('data-id'),event)">修改</a>
+					    <a th:id="${'maModifyCancel'+ma.id}" href="#" th:data-id="${ma.id}" 
+					       onclick="maModifyCancel(this.getAttribute('data-id'),event)" style="display:none;" class="text-danger" >取消</a> |
+					    <a th:id="${'maDeleteOne'+ma.id}" href="#" th:data-id="${ma.id}"
+					       onclick="maDeleteOne(this.getAttribute('data-id'),event)">删除</a>
+					    <a th:id="${'maModifyConfirm'+ma.id}" href="#" th:data-id="${ma.id}"
+					       onclick="maModifyConfirm(this.getAttribute('data-id'),event)" style="display:none;" class="text-danger" >确定</a>      
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+    </div>
+    
+</div>
+	
+	
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.js"></script>
+	<script type="text/javascript" src="/jQuery/jquery-3.6.0.js"></script>
+	<script type="text/javascript" src="/js/mailingAddress-query-result-one.js"></script>
+	
+    
+</body>
+</html>
